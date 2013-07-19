@@ -1,6 +1,16 @@
 require 'sinatra'
+require 'sinatra/cookies'
 require 'erb'
+require 'yaml'
 
 get '/' do
-  erb :home
+  if cookies[:auth]
+    erb :home
+  else
+    redirect to('/login')
+  end
+end
+
+get '/login' do
+  erb :login
 end
