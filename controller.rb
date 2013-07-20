@@ -14,8 +14,7 @@ get '/' do
 end
 
 post '/login' do
-  login_result = login params[:username], params[:password]
-  login_result
+  login params[:username], params[:password]
 end
 
 get '/login' do
