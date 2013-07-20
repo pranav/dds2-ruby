@@ -2,6 +2,7 @@
 
 ldap_conf = {
   :server    => '',
+  :port      => '',
   :base      => '',
   :people_dn => '',
   :group_dn  => ''
