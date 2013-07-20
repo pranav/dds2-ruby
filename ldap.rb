@@ -5,11 +5,9 @@ require 'config'
 # If login successful, return uid
 # else return False
 def login(user, pass)
-  ldap = Net::LDAP.new
-  ldap.host = $ldap_conf[:server]
-  ldap.port = $ldap_conf[:port]
-  ldap.auth = user + $ldap_conf[:people_dn]
-  if ldap.bind
+  ldap = Net::LDAP.new(:host => $ldap_conf[:server], :port => $ldap_conf[:port])
+
+  if ldap.bind(:method => :tls, :username => user + $ldap_config[:people_dn], :password => pass)
     get_uid(ldap, user)
   else
     False
