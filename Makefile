@@ -1,5 +1,8 @@
 
 
+server:
+	@RACK_ENV=production ruby controller.rb
+
 dependencies:
 	@sudo apt-get install rubygems ruby-dev ruby-ldap unzip
 	@sudo gem install bundler
