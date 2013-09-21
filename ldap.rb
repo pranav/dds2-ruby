@@ -24,6 +24,6 @@ end
 
 def get_uidNumber(conn, user)
   conn.search($ldap_conf[:people_dn], 1 ,"(uid=#{user})") do |entry|
-    entry['uidNumber']
+    entry['uidNumber'].to_s
   end
 end

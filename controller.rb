@@ -5,7 +5,10 @@ require 'erb'
 require 'yaml'
 require 'ldap.rb'
 
+set :bind, '0.0.0.0'
+
 get '/' do
+  puts "Found a cookie! #{cookies[:auth]}"
   if cookies[:auth]
     erb :home
   else
@@ -17,6 +20,7 @@ post '/login' do
   uid = login params[:username], params[:password]
   if uid
     cookies[:auth] = uid
+    puts "Cookie set: #{cookies[:auth]}\n"
     redirect to '/'
   else
     redirect to '/login?fail=1'
