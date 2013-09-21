@@ -10,10 +10,14 @@ def login(user, pass)
   conn.set_option(LDAP::LDAP_OPT_PROTOCOL_VERSION, 3)
   conn.start_tls
 
-  if conn.bind('uid=' + user + ',' + $ldap_conf[:people_dn], pass)
-    get_uidNumber conn, user
-  else
-    False
+  begin
+    if conn.bind('uid=' + user + ',' + $ldap_conf[:people_dn], pass)
+      get_uidNumber conn, user
+    else
+      False
+    end
+  rescue Exception => e
+    nil
   end
 end
 

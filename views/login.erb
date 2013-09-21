@@ -6,6 +6,9 @@
   </div>
   <div class='span5 login-span'>
     <form class='form-horizontal' action='/login' method='POST'>
+      <% if params[:fail] %>
+        <div>Login failed, try again.</div>
+      <% end %>
       <div class='control-group'>
         <label class='control-label' for='username'>Username</label>
         <div class='controls'>

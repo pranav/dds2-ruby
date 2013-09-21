@@ -9,14 +9,25 @@ get '/' do
   if cookies[:auth]
     erb :home
   else
-    redirect to('/login')
+    redirect to '/login'
   end
 end
 
 post '/login' do
-  login params[:username], params[:password]
+  uid = login params[:username], params[:password]
+  if uid
+    cookies[:auth] = uid
+    redirect to '/'
+  else
+    redirect to '/login?fail=1'
+  end
 end
 
 get '/login' do
   erb :login
+end
+
+get '/logout' do
+  cookies[:auth] = nil
+  redirect to '/login'
 end
