@@ -1,9 +1,12 @@
+$LOAD_PATH << "."
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/cookies'
 require 'erb'
 require 'yaml'
-require 'ldap.rb'
+require 'ldap'
+require 'config.rb'
+require 'login.rb'
 
 set :bind, '0.0.0.0'
 
@@ -35,3 +38,4 @@ get '/logout' do
   cookies[:auth] = nil
   redirect to '/login'
 end
+
