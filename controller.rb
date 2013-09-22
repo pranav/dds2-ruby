@@ -5,6 +5,7 @@ require 'sinatra/cookies'
 require 'erb'
 require 'yaml'
 require 'ldap'
+require 'active_record'
 require 'config.rb'
 require 'login.rb'
 
