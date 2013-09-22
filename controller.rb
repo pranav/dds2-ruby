@@ -11,6 +11,7 @@ require 'login.rb'
 
 set :bind, '0.0.0.0'
 
+
 get '/' do
   puts "Found a cookie! #{cookies[:auth]}"
   if cookies[:auth]
@@ -19,6 +20,23 @@ get '/' do
     redirect to '/login'
   end
 end
+
+
+get '/upload' do
+  erb :upload
+end
+
+
+post '/upload' do
+  d = Deck.new
+  d.name = params[:name]
+  d.uid = cookies[:auth].to_s()
+  if params[:file]
+    filename = params[:file][:filename]
+    file = params[:file][:tempfile]
+    File.open("slides/#{uuid}
+end
+
 
 post '/login' do
   uid = login params[:username], params[:password]
@@ -31,9 +49,11 @@ post '/login' do
   end
 end
 
+
 get '/login' do
   erb :login
 end
+
 
 get '/logout' do
   cookies[:auth] = nil
