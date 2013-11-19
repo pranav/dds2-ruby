@@ -1,31 +1,18 @@
 <%= erb :header %>
 <div class='container'>
-  <div class='span6'>
-    <h2>Login to view your slides</h2>
-    <p>If you are having any difficulty, please contact someone who cares.</p>
-  </div>
-  <div class='span5 login-span'>
-    <form class='form-horizontal' action='/login' method='POST'>
-      <% if params[:fail] %>
-        <div>Login failed, try again.</div>
-      <% end %>
-      <div class='control-group'>
-        <label class='control-label' for='username'>Username</label>
-        <div class='controls'>
-          <input type='text' name='username'  id='username' placeholder='Username'>
-        </div>
+  <% if params[:fail] %>
+    <div class='alert alert-danger'>Sorry, your login credentials were incorrect. Please try again.</div>
+  <% end %>
+  <div class='col-lg-3'>
+    <form role="form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" placeholder="Username">
       </div>
-      <div class='control-group'>
-        <label class='control-label' for='password'>Password</label>
-        <div class='controls'>
-          <input type='password' id='password' name='password' placeholder='Password'>
-        </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" placeholder="Password">
       </div>
-      <div class='control-group'>
-        <div class='controls'>
-          <button type='submit' class='btn'>Sign in</button>
-        </div>
-      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
     </form>
   </div>
-
