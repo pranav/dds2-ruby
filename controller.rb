@@ -58,7 +58,7 @@ end
 
 
 post '/login' do
-  uid = login params[:username], params[:password]
+  uid = login(params[:username], params[:password])
   if uid
     cookies[:auth] = uid
     puts "Cookie set: #{cookies[:auth]}\n"
